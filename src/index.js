@@ -1,17 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import React from 'react'
+import ReactDom from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import "./index.css";
+// Stateless React component which returns JSX
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//with js file we don't need .js extension
+import { books } from "./books";
+
+import Book from "./Book";
+
+function BookList() {
+  return (
+    <section className="booklist">
+      {books.map((book) => {
+        const { img, title, author } = book;
+        return <Book key={book.id} {...book}></Book>;
+      })}
+    </section>
+  );
+}
+
+// mention what component to render and where to render
+ReactDom.render(<BookList />, document.getElementById("root"));
